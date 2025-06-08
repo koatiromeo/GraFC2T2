@@ -9,7 +9,7 @@ import framework as fw
 # ---->  input data
 
 # file that contains link stream data {(u, i, r, c, t)}
-input_dataset_file = "ciao-data.txt" 
+input_dataset_file = "epinions-data.txt" 
 separator_df = ";"   # separator of elements in a row of the dataset file
 pos_u = 0   # position of user u in a row [the first position is 0 (zero)]
 pos_i = 1   # position of item i 
@@ -19,7 +19,7 @@ pos_t = 4   # position of timestamp t
 
 # file that contains explicit trust network
 # This is optional if you don't want to use explicit trust in GraFC2T2
-input_trust_network = "ciao-trust-network.txt" 
+input_trust_network = "epinions-trust-network.txt" 
 separator_tn = ";"   # separator of elements in a row of the trust network file
 pos_user = 0        # position of user u who trust another
 pos_trusted = 1     # position of the trusted user
@@ -69,7 +69,7 @@ rs2_param = {
     "delta":540, "beta":0.1, "t0":365, "k":10, "gamma":0.7, "alpha":0.9
 }
 
-rs_list = [rs1_param, rs2_param] # list of configurated recsys 
+rs_list = [rs2_param] # list of configurated recsys 
 
 
 # ---->  Read data
