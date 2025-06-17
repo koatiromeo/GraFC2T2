@@ -103,7 +103,7 @@ void Expgen::run(){
         /* ###################################################################
             # we have the substream of the the current time_slice
         */
-        std::cout << "len(substream) " << substream.size() <<" | len(cumulate_substream) " << cumulate_substream.size() << std::endl;
+        // std::cout << "len(substream) " << substream.size() <<" | len(cumulate_substream) " << cumulate_substream.size() << std::endl;
 
         user_list.reserve(user_list.size() + distance(slice_new_user_list.begin(), slice_new_user_list.end()));
         user_list.insert(user_list.end(), slice_new_user_list.begin(), slice_new_user_list.end());

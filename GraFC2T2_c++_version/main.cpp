@@ -1,3 +1,12 @@
+#ifdef LIKWID_PERFMON
+#include <likwid-marker.h>
+#else
+#define LIKWID_MARKER_INIT
+#define LIKWID_MARKER_REGISTER(regionTag)
+#define LIKWID_MARKER_START(regionTag)
+#define LIKWID_MARKER_STOP(regionTag)
+#define LIKWID_MARKER_CLOSE
+#endif
 #include "Expgen.hpp"
 #include "utils.hpp"
 
@@ -11,9 +20,19 @@ bool sortcol( const vector<double>& v1,const vector<double>& v2 )
 }
 
 int main(int argc, char *argv[]) {
+
+
+    LIKWID_MARKER_INIT;// Initialise l'API Marker
+    LIKWID_MARKER_REGISTER("GraFC2T2_Total");
+    // Marquer la région principale d'exécution
+    LIKWID_MARKER_START("GraFC2T2_Total");
+
+
+
     string input_dataset_file = argv[1];
     string input_trust_network = argv[2];
     string graph_t = argv[3];
+
 
     //# ---->  evaluation metrics
 
@@ -40,7 +59,8 @@ int main(int argc, char *argv[]) {
     vector<vector<double>> trust_network(read_data(input_trust_network, 2));
 
     // make the time field the first column of linkstream
-    for (int i=0; i<linkstream.size(); i++){
+    for (size_t i=0; i<linkstream.size(); i++)
+    {
         double t = linkstream[i][4], u = linkstream[i][0], i_i = linkstream[i][1], c = linkstream[i][3], r = linkstream[i][2];
         linkstream[i][0] = t;
         linkstream[i][1] = u;
@@ -55,7 +75,13 @@ int main(int argc, char *argv[]) {
     start = clock() - start;
 
     std::cout << "Spending time: "<< (double)start/(double)CLOCKS_PER_SEC << std::endl;
-    return 0;
+
+    LIKWID_MARKER_STOP("GraFC2T2_Total");
+
+    LIKWID_MARKER_CLOSE; // Ferme l'API Marker et écrit les résultats
+
+    return 0;   
+
 }
 
 
