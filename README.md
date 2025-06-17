@@ -350,7 +350,7 @@ Le positionnement sur le **Modèle Roofline** (voir Figure ci-dessous) démontre
 Graphique Roofline montrant les points "avant" optimisation
 ![Graphique Roofline avant optimisation](./roofline.png)
 
-Graphique Roofline montrant les points "avant" optimisation
+Graphique Roofline montrant les points "après" optimisation
 ![Graphique Roofline après optimisation](./grafc2t2_optimise.png)
 
 De plus, il est crucial de noter que **la qualité des recommandations générées est restée identique** avant et après les optimisations de performance. Cela valide que les améliorations sont purement au niveau de l'efficacité de l'exécution, sans compromettre la pertinence algorithmique de GraFC2T2. Les expérimentations sur les architectures ARM 64 bits (Thunder X2) et x86 (Intel® Core™ i7-10750H) ont également permis de souligner comment les spécificités matérielles influencent ces gains, fournissant des insights pour des déploiements futurs.
